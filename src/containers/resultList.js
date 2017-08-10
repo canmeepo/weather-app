@@ -8,22 +8,20 @@ class SearchResults extends Component {
     const temps = weatherData.list.map((item, index) => {
       return (
         <li className="list-group-item" key={name}>
-          Date: {item.dt_txt} Temperature: {item.main.temp}°C
+          Date: {item.dt_txt} Temperature: {Math.floor((item.main.temp - 273) * 100) / 100} °С {}
         </li>
       );
     });
 
     return (
-      <div key={id} className="panel panel-info">
-        <div className="panel-heading">
-          <div className="panel-title">
-            <span className="text-center city-name">
-              {name}
-            </span>
-          </div>
+      <div key={id}>
+        <div>
+          <span>
+            {name}
+          </span>
         </div>
-        <div className="panel-body">
-          <ul className="list-group">
+        <div>
+          <ul>
             {temps}
           </ul>
         </div>
