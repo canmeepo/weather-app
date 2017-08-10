@@ -1,38 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchWeather } from '../actions/index';
+import { fetchWeather } from '../actions/';
 
-class Searchbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      term: ''
-    };
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-  }
-  onInputChange(event) {
-    this.setState({ term: event.target.value });
-  }
-
-  onFormSubmit(event) {
-    event.preventDefault();
-
-    this.props.fetchWeather(this.state.term);
-    this.setState({ term: '' });
+class SearchBar extends React.Component {
+  PlaceSelected(place) {
+    let city = place.formatted_address || place.name;
+    this.props.onFetchWeather(city);
   }
 
   render() {
-    return (
-      <form onSubmit={this.onFormSubmit}>
-        <input placeholder="city" value={this.state.term} onChange={this.onInputChange} />
-        <span>
-          <button type="submit">Search</button>
-        </span>
-      </form>
-    );
+    return <input placeholder="Укажите место" />;
   }
 }
 
-export default connect(null, { fetchWeather })(Searchbar);
+function mapDispatchToProps(dispatch) {
+  return {
+    onFetchWeather: function(city) {
+      return dispatch(fetchWeather(`q=${city}`));
+    }
+  };
+}
+
+SearchBar = connect(null, mapDispatchToProps)(SearchBar);
+
+export default SearchBar;

@@ -3,10 +3,35 @@ const API_KEY = '7e76d39fbd4ed676341427f1e95f89ca';
 const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
+export const REQUEST_WEATHER = 'REQUEST_WEATHER';
+export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
+export const REQUEST_WEATHER_FAILED = 'REQUEST_WEATHER_FAILED';
 export const REQUEST_LOCATION = 'REQUEST_LOCATION';
 export const RECEIVE_LOCATION = 'RECEIVE_LOCATION';
 export const ADD_CITY = 'ADD_CITY';
 export const REMOVE_CITY = 'REMOVE_CITY';
+
+export function requestWeather() {
+  return {
+    type: REQUEST_WEATHER
+  };
+}
+
+export function requestWeatherFailed(error) {
+  return {
+    type: REQUEST_WEATHER_FAILED,
+    error
+  };
+}
+
+export function receiveWeather(json) {
+  return {
+    type: RECEIVE_WEATHER,
+    payload: {
+      json
+    }
+  };
+}
 
 export function fetchWeather(city) {
   const url = `${ROOT_URL}&q=${city},us`;
@@ -17,6 +42,7 @@ export function fetchWeather(city) {
     payload: request
   };
 }
+
 export function requestLocation() {
   return {
     type: REQUEST_LOCATION

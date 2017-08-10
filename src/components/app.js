@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from '../containers/searchBar';
 import ResultList from '../containers/resultList';
+import CurrentWeather from '../components/currentWeather';
 
 export default class App extends Component {
   render() {
@@ -8,6 +9,7 @@ export default class App extends Component {
       <div>
         <SearchBar />
         <ResultList />
+        <CurrentWeather />
       </div>
     );
   }

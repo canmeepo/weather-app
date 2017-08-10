@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import Weather from './weather';
-import Location from './location';
+import weather from './weather';
+import location from './location';
 
 const rootReducer = combineReducers({
-  Weather,
-  Location
+  weather,
+  location
 });
 
 export default rootReducer;

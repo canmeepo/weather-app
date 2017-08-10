@@ -1,46 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addCity } from '../actions';
+import CurrentWeather from '../components/currentWeather';
 
 class SearchResults extends Component {
-  renderWeather = weatherData => {
-    const name = weatherData.city.name;
-    const id = weatherData.city.id;
-    const temps = weatherData.list.map((item, index) => {
-      return (
-        <li className="list-group-item" key={name}>
-          Date: {item.dt_txt} Temperature: {Math.floor((item.main.temp - 273) * 100) / 100} °С {}
-        </li>
-      );
-    });
-
-    return (
-      <div key={id}>
-        <div>
-          <span>
-            {name}
-          </span>
-        </div>
-        <div>
-          <ul>
-            {temps}
-          </ul>
-        </div>
-      </div>
-    );
-  };
-
   render() {
-    const { weather } = this.props;
+    const { isFetching, weather } = this.props;
+
+    if (weather.error) {
+      return (
+        <p>
+          Error {weather.error}
+        </p>
+      );
+    }
+
+    let city = '';
+
+    if (weather.current) {
+      city = weather.current.name + ', ' + weather.current.sys.country;
+    }
+
     return (
       <div>
-        {weather.map(this.renderWeather)}
+        <p>
+          {' '}City name: {city}{' '}
+        </p>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ weather }) => ({
-  weather
-});
+const mapStateToProps = state => {
+  const { location, weather } = state;
 
-export default connect(mapStateToProps)(SearchResults);
+  return {
+    location,
+    weather
+  };
+};
+
+SearchResults = connect(mapStateToProps)(SearchResults);
+
+export default SearchResults;
