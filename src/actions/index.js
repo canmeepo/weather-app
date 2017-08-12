@@ -64,7 +64,7 @@ export const fetchWeather = params => {
     return fetch(url)
       .then(response => response.json())
       .then(json => {
-        if (json.cod == 200) {
+        if (json.cod === 200) {
           dispatch(receiveWeather(json));
         } else {
           dispatch(requestWeatherFailed(json.message));

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCity } from '../actions';
 import CurrentWeather from '../components/currentWeather.js';
 
 class SearchResults extends Component {
   render() {
-    const { isFetching, weather } = this.props;
+    const { weather } = this.props;
 
     if (weather.error) {
       return (

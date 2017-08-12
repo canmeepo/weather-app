@@ -7,12 +7,7 @@ import {
   RECEIVE_FORECAST
 } from '../actions';
 
-const initialState = {
-  isFetchingCurrent: true,
-  isFetchingForecast: true
-};
-
-export default function weather(state = initialState, action) {
+const weather = (state = [], action) => {
   switch (action.type) {
     case REQUEST_WEATHER:
       return {
@@ -54,4 +49,5 @@ export default function weather(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+export default weather;

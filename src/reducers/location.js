@@ -1,7 +1,5 @@
 import { REQUEST_LOCATION, RECEIVE_LOCATION } from '../actions';
 
-const initialState = {};
-
 const location = (state = [], action) => {
   switch (action.type) {
     case REQUEST_LOCATION:

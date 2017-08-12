@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { fetchWeather, fetchForecast } from '../actions/';
 import Autocomplete from 'react-google-autocomplete';
 
