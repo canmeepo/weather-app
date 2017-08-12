@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCity } from '../actions';
-import CurrentWeather from '../components/currentWeather';
+import CurrentWeather from '../components/currentWeather.js';
 
 class SearchResults extends Component {
   render() {
@@ -23,9 +23,15 @@ class SearchResults extends Component {
 
     return (
       <div>
-        <p>
-          {' '}City name: {city}{' '}
-        </p>
+        <span>
+          <p>
+            {' '}City name: {city}{' '}
+          </p>
+          <CurrentWeather />
+        </span>
+        <span>
+          <button>delete</button>
+        </span>
       </div>
     );
   }

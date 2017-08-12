@@ -2,18 +2,22 @@ import { REQUEST_LOCATION, RECEIVE_LOCATION } from '../actions';
 
 const initialState = {};
 
-export default function location(state = initialState, action) {
+const location = (state = [], action) => {
   switch (action.type) {
     case REQUEST_LOCATION:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true
-      });
+      };
     case RECEIVE_LOCATION:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
-        data: action.payload.location
-      });
+        data: state.location + action.payload
+      };
     default:
       return state;
   }
-}
+};
+
+export default location;

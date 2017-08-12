@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class CurrentWeather extends React.Component {
@@ -12,12 +13,15 @@ class CurrentWeather extends React.Component {
         </p>
       );
     }
+    if (!weather.current || isFetchingCurrent) {
+      return false;
+    }
 
     return (
       <div>
-        <p>
-          {' '}temp: {weather.current.temp};
-        </p>
+        <div>
+          {' '}Temperature {weather.current.main.temp} °C
+        </div>
       </div>
     );
   }

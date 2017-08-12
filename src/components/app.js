@@ -9,7 +9,6 @@ export default class App extends Component {
       <div>
         <SearchBar />
         <ResultList />
-        <CurrentWeather />
       </div>
     );
   }

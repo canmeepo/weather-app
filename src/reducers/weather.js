@@ -1,28 +1,56 @@
-import { REQUEST_WEATHER, REQUEST_WEATHER_FAILED, RECEIVE_WEATHER } from '../actions';
+import {
+  REQUEST_WEATHER,
+  REQUEST_WEATHER_FAILED,
+  RECEIVE_WEATHER,
+  REQUEST_FORECAST,
+  REQUEST_FORECAST_FAILED,
+  RECEIVE_FORECAST
+} from '../actions';
 
 const initialState = {
-  isFetchingCurrent: true
+  isFetchingCurrent: true,
+  isFetchingForecast: true
 };
 
 export default function weather(state = initialState, action) {
   switch (action.type) {
     case REQUEST_WEATHER:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetchingCurrent: true
-      });
+      };
     case REQUEST_WEATHER_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetchingCurrent: false,
         error: action.error
-      });
+      };
     case RECEIVE_WEATHER: {
-      let state1 = Object.assign({}, state);
+      let state1 = { ...state };
       delete state1.error;
-      return Object.assign({}, state1, {
+      return {
+        ...state1,
         isFetchingCurrent: false,
         current: action.payload.json
-      });
+      };
     }
+    case REQUEST_FORECAST:
+      return {
+        ...state,
+        isFetchingForecast: true
+      };
+    case REQUEST_FORECAST_FAILED:
+      return {
+        ...state,
+        isFetchingForecast: false,
+        error: action.error
+      };
+    case RECEIVE_FORECAST:
+      return {
+        ...state,
+        isFetchingForecast: false,
+        forecast: action.payload.json
+      };
     default:
       return state;
   }
